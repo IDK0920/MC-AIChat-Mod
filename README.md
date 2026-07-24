@@ -2,7 +2,9 @@
 
 **在 Minecraft 中与 AI 实时对话！使用 `@AI` 提问，获得智能回复**
 
-[功能特点](#-功能特点) • [安装教程](#-安装教程) • [使用方法](#-使用方法) • [配置说明](#-配置说明)
+[中文](#-📖 简介) • [English](#-📖 Introduction)
+
+[功能特点](#-功能特点) • [安装教程](#-安装教程) • [使用方法](#-使用方法) •
 
 </div>
 
@@ -237,5 +239,231 @@ cd MC-AIChat-Mod
 
 </div>
 ```
+</div>
 
-这个版本的 README 包含了标准的开源项目结构，并已更新为你的仓库地址。你可以直接将其用于你的项目页面。
+---
+
+## 📖 Introduction
+
+**MC-AIChat-Mod** is a mod developed for **Forge** that allows you to have real-time conversations with AI through the in-game chat box. The mod connects via the **Ollama API** and supports both single-player and multiplayer servers.
+
+> 💡 **Just type `@AI Your question` in the chat box, and the AI will reply instantly!**
+
+---
+
+## ✨ Features
+
+### 🧠 Smart Conversations
+*   Ask the AI anytime in-game using `@AI`
+*   The AI responds as an in-game friend, with a friendly and warm tone
+*   Supports casual chat, answering game-related questions, and more
+
+### 🎯 Core Features
+*   ✅ **Supports single-player/multiplayer servers**: All players can use it
+*   ✅ **Ollama integration**: Supports various open-source models (Qwen3, DeepSeek-R1, etc.)
+*   ✅ **Custom system prompts**: Customize the AI's personality and response style
+*   ✅ **No external dependencies**: Pure Java implementation, compatible with 99.99% of mods
+
+### 🎨 Interactive Experience
+*   **Colorful chat messages**, clear and beautiful
+*   AI replies **show the player name**, easy to identify
+
+---
+
+## 📦 Installation Guide
+
+### Prerequisites
+1.  **Java 17** or higher
+2.  **Forge 47.2.0+**
+3.  **Ollama** installed and running
+
+### Installation Steps
+
+#### 1️⃣ Install Ollama (skip if already installed)
+```bash
+# Windows/Mac/Linux
+curl -fsSL https://ollama.com/install.sh | sh
+# Or visit https://ollama.com to download the installer
+```
+
+#### 2️⃣ Download an AI Model
+```bash
+ollama pull <model-name>
+```
+
+#### 3️⃣ Install the Mod
+1.  Download `aichatmod-1.0.0.jar` from [Releases](https://github.com/IDK0920/MC-AIChat-Mod/releases)
+2.  Place it in the `.minecraft/mods/` folder for clients, or the `mods/` folder for servers
+
+#### 4️⃣ Launch and Configure
+After the first launch, the config file will be generated at:
+*   Single-player: `.minecraft/config/aichatmod-common.toml`
+*   Server: `server/config/aichatmod-common.toml`
+
+---
+
+## 🎮 Usage
+
+### Basic Usage
+Type the following in the in-game chat box:
+```
+@AI Hello, my name is Steve!
+@AI How do I make a diamond sword?
+@AI The weather is great today, want to go on an adventure?
+```
+
+### Command List
+| Command | Description |
+| :--- | :--- |
+| `@AI <question>` | Ask the AI a question |
+| `/ai test` | Test the Ollama connection |
+| `/ai status` | Display current configuration info |
+
+### Example
+```
+[Player] Steve: @AI Teach me how to build an automatic farm
+[AI] Xiao Ai: 🌾 Simple! Use redstone, pistons, and water flow to build a simple sugarcane farm! I can make a materials list for you if you need~
+```
+**The output quality may vary depending on the capabilities of different AI models**
+---
+
+## ⚙️ Configuration
+
+Config file `config/aichatmod-common.toml`:
+```toml
+[general]
+    # Ollama API URL
+    ollamaUrl = "http://localhost:11434/api/chat"
+    # AI model to use
+    ollamaModel = "qwen3"
+    # API timeout (seconds)
+    timeout = 30
+    # Whether to disable thinking mode
+    disableThinking = true
+    # AI system prompt (custom persona!)
+    systemPrompt = """
+You are an AI assistant in the game Minecraft, named Xiao Ai.
+Your personality: friendly, lively, humorous, and you enjoy helping players.
+Your tasks:
+1. Chat with players casually, like a friend in the game
+2. Answer player questions about Minecraft
+3. Keep responses brief, at most 2-3 sentences each time
+4. Speak in a relaxed and cheerful tone
+5. Use emojis appropriately to make conversations more fun
+Remember: You are a good friend in the Minecraft world!
+"""
+```
+
+### 🎨 Customizing AI Personality
+Modify `systemPrompt` to change the AI's response style:
+```toml
+# Goofy style
+systemPrompt = "You are a mischievous Minecraft assistant who loves jokes and pranks..."
+# Expert style
+systemPrompt = "You are a seasoned Minecraft player, answering questions accurately, professionally, and in detail..."
+```
+
+---
+
+## 🏗️ Technical Architecture
+
+```mermaid
+graph TD
+    A[Player: @AI question] --> B[Minecraft Client];
+    B -- Network packet --> C[Server];
+    C -- HTTP request --> D[Ollama API];
+    D -- AI generated reply --> C;
+    C -- Broadcast reply --> B;
+    B -- Display reply --> A;
+```
+
+### Tech Stack
+*   **Minecraft Forge 1.20.1**
+*   **Java 17 + HttpClient** (standard library)
+*   **Ollama API** (local AI service)
+
+---
+
+## 🔧 Compilation & Development
+
+### Clone the Project
+```bash
+git clone https://github.com/IDK0920/MC-AIChat-Mod.git
+cd MC-AIChat-Mod
+```
+
+### Build
+```bash
+# Using Gradle Wrapper
+./gradlew clean build
+# The generated JAR will be in the build/libs/ directory
+```
+
+### Import to IDE
+```bash
+# IntelliJ IDEA
+./gradlew idea
+# Eclipse
+./gradlew eclipse
+```
+
+---
+
+## 📋 System Requirements
+| Component | Requirement |
+| :--- | :--- |
+| Forge | 47.2.0+ |
+| Java | 17+ |
+| Ollama | Latest version |
+| Memory | 4GB+ recommended (including AI model) |
+**Only version 1.20.1 of MC has been tested; other versions should be tested by yourself**
+---
+
+## 🐛 FAQ
+
+<details>
+<summary><b>❌ AI service connection failed</b></summary>
+
+1.  Check if Ollama is running: `ollama serve`
+2.  Test the connection: `curl http://localhost:11434/api/tags`
+3.  Check if the URL in the config file is correct
+</details>
+
+<details>
+<summary><b>❌ Model not found</b></summary>
+
+Run `ollama list` to see installed models, and download with `ollama pull <model-name>`
+</details>
+
+<details>
+<summary><b>❌ Server fails to start</b></summary>
+
+Make sure Java version is 17+ and check if the Forge version matches
+</details>
+
+---
+
+## 📜 License
+This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
+
+---
+
+## 🤝 Contributing
+Issues and Pull Requests are welcome!
+
+1.  Fork this repository
+2.  Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3.  Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4.  Push to the branch (`git push origin feature/AmazingFeature`)
+5.  Open a Pull Request
+
+---
+
+## 🙏 Acknowledgements
+*   All players using this mod ❤️
+
+---
+
+<div align="center">
+
+**⭐ If you find this useful, please give it a Star!**
