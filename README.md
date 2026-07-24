@@ -4,7 +4,7 @@
 
 [中文](#-简介) • [English](#-Introduction)
 
-[功能特点](#-功能特点) • [安装教程](#-安装教程) • [使用方法](#-使用方法) •
+[功能特点](#-功能特点) • [安装教程](#-安装教程) • [使用方法](#-使用方法)
 
 </div>
 
@@ -13,6 +13,7 @@
 ## 📖 简介
 
 **MC-AIChat-Mod** 是一个为 **Forge** 开发的模组，让你可以在游戏中通过聊天框与 AI 进行实时对话。模组通过接入 **Ollama API**，支持在单人和多人服务器中使用。
+  MC 1.20.1+froge47.4.21可以正常运行，其他版本请自行测试
 
 > 💡 **只需在聊天框输入 `@AI 你的问题`，AI 就会立刻回答！**
 
@@ -238,15 +239,16 @@ cd MC-AIChat-Mod
 [报告问题](https://github.com/IDK0920/MC-AIChat-Mod/issues) • [建议功能](https://github.com/IDK0920/MC-AIChat-Mod/discussions)
 
 </div>
-```
 </div>
 
 ---
 
+[Features](#-features) • [Installation Guide](#-installation-guide) • [Usage](#-usage)
+
 ## 📖 Introduction
 
 **MC-AIChat-Mod** is a mod developed for **Forge** that allows you to have real-time conversations with AI through the in-game chat box. The mod connects via the **Ollama API** and supports both single-player and multiplayer servers.
-
+  MC 1.20.1 + Forge 47.2.0 are confirmed to work properly. Other versions should be tested by yourself.
 > 💡 **Just type `@AI Your question` in the chat box, and the AI will reply instantly!**
 
 ---
